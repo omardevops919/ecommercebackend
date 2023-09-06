@@ -1,11 +1,13 @@
 const express=require('express');
 const mongoose =require("mongoose")
 const dotenv =require('dotenv')
+const cors=require('cors')
 dotenv.config()
 const app = express();
 const categorieRouter =require("./routes/categorie.route")
 const scategorieRouter =require("./routes/scategorie.route")
 const articleRouter =require("./routes/article.route")
+
 
 //BodyParser Middleware
 app.use(express.json());
@@ -23,6 +25,7 @@ process.exit();
 app.get("/",(req,res)=>{
 res.send("bonjour omar");
 });
+app.use(cors())
 app.use('/api/categories', categorieRouter);
 app.use('/api/scategories', scategorieRouter);
 app.use('/api/articles', articleRouter);
