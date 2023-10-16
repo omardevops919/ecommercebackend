@@ -1,5 +1,6 @@
 const mongoose =require("mongoose")
 const Scategorie =require("./scategorie.js");
+
 const articleSchema=mongoose.Schema({
 reference:{ type: String, required: true,unique:true },
 designation:{ type: String, required: true,unique:true },

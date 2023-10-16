@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const Categorie=require("../models/categorie")
+const Categorie=require("../models/categorie");
+const { verifyToken } = require('../middleware/verify-token');
 // afficher la liste des categories.
-router.get('/', async (req, res )=> {
+router.get('/',verifyToken, async (req, res )=> {
     try {
     const cat = await Categorie.find();
     

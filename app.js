@@ -2,13 +2,16 @@ const express=require('express');
 const mongoose =require("mongoose")
 const dotenv =require('dotenv')
 const cors=require('cors')
+
 dotenv.config()
 const app = express();
 const categorieRouter =require("./routes/categorie.route")
 const scategorieRouter =require("./routes/scategorie.route")
 const articleRouter =require("./routes/article.route")
+const paymentRouter = require( "./routes/payment.route")
+const userRouter =require("./routes/user.route")
 
-
+app.use(express.static(__dirname + '/'));
 //BodyParser Middleware
 app.use(express.json());
 mongoose.set("strictQuery", false);
@@ -29,6 +32,9 @@ app.use(cors())
 app.use('/api/categories', categorieRouter);
 app.use('/api/scategories', scategorieRouter);
 app.use('/api/articles', articleRouter);
+app.use('/api/user', userRouter);
+app.use('/api/payment', paymentRouter);
+
 app.listen(process.env.PORT, () => {
 console.log(`Server is listening on port ${process.env.PORT}`); });
 module.exports = app;
